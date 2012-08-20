@@ -11,10 +11,13 @@ public class IntegerConversion {
 	};
 	
 	
-	/** @return string representation of integer for a given radix base. */
-	public char[] itoa(int i, int base) {		
+	/** @return string representation of integer for a given radix base.
+	 * LIMITATION: doesn't process i=Integer.MIN_VALUE; special case impl. */
+	public String itoa(int i, int base) {
+		if (i == Integer.MIN_VALUE) return "-2147483648";
+		
 		boolean negative = i < 0;
-		if (negative) i *= -1;
+		if (negative) i = -i;
 		
 		int digitsLeft = i; // running example: i=1432,base=10
 		char[] instr = new char[32];  // max length
@@ -29,25 +32,28 @@ public class IntegerConversion {
 		
 		if (negative) instr[counter++] = '-';
 
-		for (i = 0; i < instr.length/2; i++) {
+		// reverse char[] by swapping
+		for (i = 0; i < counter/2; i++) {
 			char temp = instr[i];
 			instr[i] = instr[(counter-1) - i];
 			instr[(counter-1) - i] = temp;
 		}
-		return instr;
+		
+		return String.copyValueOf(instr, 0, counter).intern();
 	}
 	
 	
 	@Test
 	public void testbase10() {
-		IntegerConversion c = new IntegerConversion();
 		int base = 10;
 		
 		try {
 			Assert.assertEquals(itoa(0, base), "0" );
+			Assert.assertEquals(itoa(1, base), "1" );
 			Assert.assertEquals(itoa(1234, base), "1234" );
 			Assert.assertEquals(itoa(-4567, base), "-4567" );
 			Assert.assertEquals(itoa(Integer.MAX_VALUE, base), Integer.toString(Integer.MAX_VALUE) );
+			Assert.assertEquals(itoa(Integer.MIN_VALUE, base), Integer.toString(Integer.MIN_VALUE) );
 		} catch (AssertionError e) {
 			System.out.println(e.getMessage() );
 			throw e;
