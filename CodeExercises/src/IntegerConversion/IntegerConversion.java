@@ -5,6 +5,8 @@ public class IntegerConversion {
 	private static final char[] CHARMAP = {'0', '1', '2', '3', '4', '5', '6', 
 		'7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 	
+	
+	/** @return string representation of integer for a given radix base. */
 	public String itoa(int i, int base) {
 		boolean isNegative = i < 0;
 
@@ -30,7 +32,7 @@ public class IntegerConversion {
 	
 	
 	
-	
+	/** Do tests here */
 	public static void main(String[] args) {
 		IntegerConversion c = new IntegerConversion();
 		int base = 10;
