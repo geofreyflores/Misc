@@ -12,7 +12,7 @@ public class Node {
 		this.value = value;
 	}
 	
-	// Convenience method for construction/method chaining.
+	/** Convenience method for construction/method chaining. */
 	public Node next(int value) {
 		return (this.next = new Node(value));
 	}
