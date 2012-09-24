@@ -31,6 +31,8 @@ public class Node {
 	@Test
 	public static void testReverseList() {
 		Node head = new Node(1); // need to keep head reference
+		Assert.assertEquals(head.reverseList().value, 1);
+		
 		head.next(new Node(2)).next(new Node(3)).next(new Node(4));
 		
 		head = head.reverseList();
