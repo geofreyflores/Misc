@@ -44,6 +44,6 @@ public class Node {
 		Assert.assertEquals(head.next.next.value, 2);
 		Assert.assertEquals(head.next.next.next.value, 1);
 		
-		Assert.assertNull(head.next.next.next.next.value);
+		Assert.assertNull(head.next.next.next.next);
 	}
 }
