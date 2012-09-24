@@ -12,12 +12,13 @@ public class Node {
 		this.value = value;
 	}
 	
-	// Convenience method for method chaining.
-	public Node next(Node n) {
-		return (this.next = n);
+	// Convenience method for construction/method chaining.
+	public Node next(int value) {
+		return (this.next = new Node(value));
 	}
 	
-	
+	/** Assuming this Node is the head of the list, 
+	 * @return head of this list, reversed. */
 	public Node reverseList() {
 		if (this.next == null) return this;
 		
@@ -30,15 +31,19 @@ public class Node {
 	
 	@Test
 	public static void testReverseList() {
-		Node head = new Node(1); // need to keep head reference
+		Node head;
+		
+		head = new Node(1); // need to keep head reference
 		Assert.assertEquals(head.reverseList().value, 1);
 		
-		head.next(new Node(2)).next(new Node(3)).next(new Node(4));
-		
+		head.next(2).next(3).next(4);
 		head = head.reverseList();
 		
 		Assert.assertEquals(head.value, 4);
 		Assert.assertEquals(head.next.value, 3);
 		Assert.assertEquals(head.next.next.value, 2);
+		Assert.assertEquals(head.next.next.next.value, 1);
+		
+		Assert.assertNull(head.next.next.next.next.value);
 	}
 }
