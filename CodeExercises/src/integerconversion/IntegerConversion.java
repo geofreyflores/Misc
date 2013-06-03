@@ -6,14 +6,15 @@ import org.testng.annotations.Test;
 public class IntegerConversion {
 	
 	private static final char[] CHARMAP = {
-		'0', '1', '2', '3', '4', '5', '6', '7', 
-		'8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
+		'0', '1', '2', '3', '4', 
+		'5', '6', '7', '8', '9'
 	};
 	
 	
-	/** @return string representation of integer for a given radix base.
+	/** @return string representation of integer in base 10;
 	 * LIMITATION: doesn't process i=Integer.MIN_VALUE; special case impl. */
-	public String itoa(int i, int base) {
+	public String itoa(int i) {
+		final base = 10;
 		if (i == Integer.MIN_VALUE) return "-2147483648";
 		
 		boolean negative = i < 0;
@@ -44,16 +45,14 @@ public class IntegerConversion {
 	
 	
 	@Test
-	public void testbase10() {
-		int base = 10;
-		
+	public void testbase10() {		
 		try {
-			Assert.assertEquals(itoa(0, base), "0" );
-			Assert.assertEquals(itoa(1, base), "1" );
-			Assert.assertEquals(itoa(1234, base), "1234" );
-			Assert.assertEquals(itoa(-4567, base), "-4567" );
-			Assert.assertEquals(itoa(Integer.MAX_VALUE, base), Integer.toString(Integer.MAX_VALUE) );
-			Assert.assertEquals(itoa(Integer.MIN_VALUE, base), Integer.toString(Integer.MIN_VALUE) );
+			Assert.assertEquals(itoa(0), "0" );
+			Assert.assertEquals(itoa(1), "1" );
+			Assert.assertEquals(itoa(1234), "1234" );
+			Assert.assertEquals(itoa(-4567), "-4567" );
+			Assert.assertEquals(itoa(Integer.MAX_VALUE), Integer.toString(Integer.MAX_VALUE) );
+			Assert.assertEquals(itoa(Integer.MIN_VALUE), Integer.toString(Integer.MIN_VALUE) );
 		} catch (AssertionError e) {
 			System.out.println(e.getMessage() );
 			throw e;
