@@ -11,17 +11,17 @@ public class IntegerConversion {
 	};
 	
 	
-	/** @return string representation of integer in base 10;
-	 * LIMITATION: doesn't process i=Integer.MIN_VALUE; special case impl. */
+	/** @return String representation of integer in base 10 */
 	public String itoa(int i) {
 		final base = 10;
+		// LIMITATION: doesn't process i=Integer.MIN_VALUE; special case impl.
 		if (i == Integer.MIN_VALUE) return "-2147483648";
 		
 		boolean negative = i < 0;
 		if (negative) i = -i;
 		
 		int digitsLeft = i; // running example: i=1432,base=10
-		char[] instr = new char[32];  // max length
+		char[] instr = new char[11];  // max length
 		int counter = 0;
 
 		do {
